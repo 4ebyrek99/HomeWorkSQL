@@ -34,7 +34,6 @@ module.exports.getAll = (callback) =>{
         })
 };
 
-
 module.exports.getUserByLogin = function(login, callback){
     User.findOne({where:{login: login}, raw: true })
     .then(user=>{
@@ -95,3 +94,4 @@ module.exports.comparePass = function(passFormUser, passFromDB, callback){
         callback(isAuth)
     });
 };
+
