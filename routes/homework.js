@@ -7,7 +7,7 @@ routerHomework.get('/', homework_controller.view);
 
 routerHomework.post('/create', homework_controller.create);
 
-routerHomework.post('/:id', homework_controller.viewByLesson);
+//routerHomework.post('/:id', homework_controller.viewByLesson);
 
 //routerHomework.delete('/delete', homework_controller.deleteHomework);
 

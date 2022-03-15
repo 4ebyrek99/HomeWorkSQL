@@ -14,3 +14,13 @@ const Lesson = db.sequelize.define("lesson", {
 },{
     timestamps: false
 });
+
+module.exports.getAll = (callback)=>{
+  Lesson.findAll({raw:true})
+      .then(lessons=>{
+        callback(lessons)
+      })
+      .catch(err=>{
+        console.log(err)
+    })
+}

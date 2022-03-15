@@ -25,7 +25,10 @@ const User = db.sequelize.define("user", {
 });
 
 module.exports.getAll = (callback) =>{
-    User.findAll({raw:true})
+    User.findAll({raw:true, attributes:[
+        'id',
+        'name'
+    ]})
         .then(users=>{
             callback(users)
         })
@@ -45,7 +48,10 @@ module.exports.getUserByLogin = function(login, callback){
 };
 
 module.exports.getUserById = function(id, callback){
-    
+    User.findOne({where:{id: id}, raw: true })
+      .then(user=>{
+        callback(user)
+      })
 };
 
 module.exports.addUser = (newUser, callback) =>{
@@ -94,4 +100,3 @@ module.exports.comparePass = function(passFormUser, passFromDB, callback){
         callback(isAuth)
     });
 };
-

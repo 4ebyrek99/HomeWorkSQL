@@ -1,4 +1,4 @@
-const db = require('../models/index')
+const db = require('./index')
 
 
 const Homework = db.sequelize.define("homeworks", {
@@ -26,7 +26,9 @@ const Homework = db.sequelize.define("homeworks", {
     },
     author: {
         type: db.Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        model: 'users',
+        key: 'id'
     },
     lesson: {
       type: db.Sequelize.STRING,
@@ -37,22 +39,20 @@ const Homework = db.sequelize.define("homeworks", {
 });
 
 
+
+
 module.exports.getAll = (callback) =>{
+
+    //Готовый код
     Homework.findAll({raw:true})
         .then(homeworks=>{
-            callback(homeworks)
+          callback(homeworks)
         })
         .catch(err=>{
             console.log(err)
         })
 };
 
-module.exports.getById = (id, callback)=>{
-    Homework.findAll({where:{lesson: id}, raw: true})
-      .then(result=>{
-        callback(result)
-      })
-}
 
 module.exports.createHomework = (item, callback) =>{
     Homework.create(item, {raw: true})
