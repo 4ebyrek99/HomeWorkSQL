@@ -5,38 +5,31 @@ const user = require('../models/user.model')
 
 exports.view = (req, res) =>{
 
-
-    homework.getAll((homeworks)=>{
-        console.log(homeworks);
-    })
-
-
     //Готовый код
-    // let lessonId = null
-    // let userId = null
+    let lessonId = null
+    let userId = null
 
-    // lesson.getAll((lessons=>{
-    //     user.getAll((users)=>{
-    //         homework.getAll((homeworks)=>{
-    //             for(i = 1; i <= homeworks.length; i++){
-    //                 lessonId = homeworks[i-1].lesson
-    //                 userId = homeworks[i-1].author
+    lesson.getAll((lessons=>{
+        user.getAll((users)=>{
+            homework.getAll((homeworks)=>{
+                for(i = 1; i <= homeworks.length; i++){
+                    lessonId = homeworks[i-1].lesson
+                    userId = homeworks[i-1].author
                     
-    //                 homeworks[i-1].lesson = lessons[lessonId-1].name
-    //                 homeworks[i-1].author = users[userId-1].name
-    //             }
+                    homeworks[i-1].lesson = lessons[lessonId-1].name
+                    homeworks[i-1].author = users[userId-1].name
+                }
             
-    //             res.json({
-    //                 lessons: lessons,
-    //                 homeworks: homeworks
-    //             })
-    //         })
-    //     })
-    // }))
+                res.json({
+                    lessons: lessons,
+                    homeworks: homeworks
+                })
+            })
+        })
+    }))
     
     
 }
-
 
 exports.create = (req, res) =>{
     homeworkItem = {
@@ -75,4 +68,26 @@ exports.create = (req, res) =>{
         }
     })
     
+}
+
+exports.filter = (req, res) =>{
+    const id = req.params.id
+
+    lesson.getAll((lessons=>{
+        user.getAll((users)=>{
+            homework.filterById(id, (homeworks)=>{
+                for(i = 1; i <= homeworks.length; i++){
+                    lessonId = homeworks[i-1].lesson
+                    userId = homeworks[i-1].author
+                    
+                    homeworks[i-1].lesson = lessons[lessonId-1].name
+                    homeworks[i-1].author = users[userId-1].name
+                }
+            
+                res.json({
+                    homeworks: homeworks
+                })
+            })
+        })
+    }))
 }

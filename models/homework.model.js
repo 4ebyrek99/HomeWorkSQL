@@ -26,9 +26,7 @@ const Homework = db.sequelize.define("homeworks", {
     },
     author: {
         type: db.Sequelize.STRING,
-        allowNull: false,
-        model: 'users',
-        key: 'id'
+        allowNull: false
     },
     lesson: {
       type: db.Sequelize.STRING,
@@ -37,8 +35,6 @@ const Homework = db.sequelize.define("homeworks", {
 },{
     timestamps: false
 });
-
-
 
 
 module.exports.getAll = (callback) =>{
@@ -52,6 +48,13 @@ module.exports.getAll = (callback) =>{
             console.log(err)
         })
 };
+
+module.exports.filterById = (id, callback) =>{
+  Homework.findAll({where:{lesson: id}, raw: true })
+    .then(result=>{
+      callback(result)
+    })
+}
 
 
 module.exports.createHomework = (item, callback) =>{
