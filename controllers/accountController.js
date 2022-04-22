@@ -9,8 +9,9 @@ exports.login = (req, res) =>{
     User.getUserByLogin(login, (find)=>{
         if(find){
             dataToken = {
-                name: find.login,
-                email:find.name,
+                id: find.id,
+                login: find.login,
+                name:find.name,
             }
             User.comparePass(password, find.password, (isAuth)=>{
                 if(isAuth){
@@ -56,11 +57,11 @@ exports.reg = (req, res) =>{
                         success: false,
                         msg: "Пользователь не был зарегистрирован!"
                     })
-                }
-                else{
+                }else{
                     dataToken = {
-                        name: newUser.login,
-                        email: newUser.name,
+                        id: user.id,
+                        login: user.login,
+                        name:  user.name,
                     }
                     const token = jwt.sign(dataToken, process.env.SECRET_KEY, {
                         expiresIn: 3600 * 12
