@@ -64,3 +64,13 @@ module.exports.createHomework = (item, callback) =>{
         })
 }
 
+module.exports.delete = (id, callback)=>{
+  Homework.destroy({where:{id: id}})
+    .then(result=>{
+      callback(result)
+    })
+    .catch(err=>{
+      callback(err)
+    })
+}
+

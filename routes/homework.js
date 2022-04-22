@@ -7,10 +7,8 @@ routerHomework.get('/', homework_controller.view);
 
 routerHomework.post('/create', homework_controller.create);
 
-routerHomework.post('/:id', homework_controller.filter);
+routerHomework.get('/:id', homework_controller.filter);
 
-//routerHomework.delete('/delete', homework_controller.deleteHomework);
-
-//routerHomework.put('/change', homework_controller.change);
+routerHomework.delete('/delete/:id', homework_controller.delete);
 
 module.exports = routerHomework;

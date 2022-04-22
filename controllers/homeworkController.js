@@ -21,7 +21,6 @@ exports.view = (req, res) =>{
                 }
             
                 res.json({
-                    lessons: lessons,
                     homeworks: homeworks
                 })
             })
@@ -52,7 +51,7 @@ exports.create = (req, res) =>{
         var yy = date.getFullYear();
         if (yy < 10) yy = '0' + yy;
       
-        return dd + '-' + mm + '-' + yy;
+        return yy + '-' + mm + '-' + dd;
     }
 
     homeworkItem.createDate = formatDate(date)
@@ -90,4 +89,27 @@ exports.filter = (req, res) =>{
             })
         })
     }))
+}
+
+exports.delete = (req, res) =>{
+    const id = req.params.id
+
+    homework.delete(id, (result)=>{
+        if(result !== 0){
+            res.json({
+                success: true,
+                result: result,
+                msg: "Домашнее задание удалено"
+            })
+        }
+        else{
+            res.json({
+                success: false,
+                result: result,
+                msg: "Домашнего задания с таким id не найдено"
+            })
+        }
+    })
+        
+    
 }
