@@ -1,7 +1,5 @@
 const User = require('../models/user.model');
 const jwt = require('jsonwebtoken');
-const configDB = require('../config/db.config');
-const keys = require('../config/keys')
 
 exports.login = (req, res) =>{
 
@@ -10,22 +8,26 @@ exports.login = (req, res) =>{
 
     User.getUserByLogin(login, (find)=>{
         if(find){
+            dataToken = {
+                name: find.login,
+                email:find.name,
+            }
             User.comparePass(password, find.password, (isAuth)=>{
-                //console.log(isAuth);
                 if(isAuth){
-                    
-                    const token = jwt.sign(find, keys.secretKey, {
+                    const token = jwt.sign(dataToken, process.env.SECRET_KEY, {
                         expiresIn: 3600 * 12
                     });
                     res
-                    .cookie("jwt", token, {
-                        httpOnly: true,
-                        secure: false
+                    .json({
+                        success: true,
+                        msg:"Успешная авторизация",
+                        jwt: token
                     })
-                    .json({msg:"Успешная авторизация"})
-                    
                 }else{
-                    return res.json({success: false, msg: "Пароль не совпадает!"})
+                    return res.json({
+                        success: false, 
+                        msg: "Пароль не совпадает!"
+                    })
                 }
             })
         }
@@ -56,12 +58,21 @@ exports.reg = (req, res) =>{
                     })
                 }
                 else{
+                    dataToken = {
+                        name: newUser.login,
+                        email: newUser.name,
+                    }
+                    const token = jwt.sign(dataToken, process.env.SECRET_KEY, {
+                        expiresIn: 3600 * 12
+                    });
+
                     res.json({
                         success: true,
                         msg: "Пользователь был зарегистрирован!",
                         data:{
                             name: user.name,
                             login: user.login,
+                            jwt: token
                         }
                     })
                 }
