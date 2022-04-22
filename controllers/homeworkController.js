@@ -1,7 +1,7 @@
 const homework = require('../models/homework.model')
 const lesson = require('../models/lesson.model')
 const user = require('../models/user.model')
-
+const jwt = require('jsonwebtoken');
 
 exports.view = (req, res) =>{
 
@@ -31,41 +31,55 @@ exports.view = (req, res) =>{
 }
 
 exports.create = (req, res) =>{
-    homeworkItem = {
-        title: req.body.title,
-        description: req.body.description,
-        expireDate: req.body.expireDate,
-        author: req.body.author,
-        lesson: req.body.lesson
-    }
 
-    const date = new Date()
+    const token = req.cookies.jwt
 
-    function formatDate(date) {
-        var dd = date.getDate();
-        if (dd < 10) dd = '0' + dd;
-    
-        var mm = date.getMonth() + 1;
-        if (mm < 10) mm = '0' + mm;
-      
-        var yy = date.getFullYear();
-        if (yy < 10) yy = '0' + yy;
-      
-        return yy + '-' + mm + '-' + dd;
-    }
-
-    homeworkItem.createDate = formatDate(date)
-
-    homework.createHomework(homeworkItem, (result)=>{
-        if(result){
-            if(result){
-                res.json({
-                    success: true,
-                    data: result
-                })
+    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) =>{
+        if(decoded != null){
+            homeworkItem = {
+                title: req.body.title,
+                description: req.body.description,
+                expireDate: req.body.expireDate,
+                author: decoded.id,
+                lesson: req.body.lesson
             }
+        
+            const date = new Date()
+        
+            function formatDate(date) {
+                var dd = date.getDate();
+                if (dd < 10) dd = '0' + dd;
+            
+                var mm = date.getMonth() + 1;
+                if (mm < 10) mm = '0' + mm;
+              
+                var yy = date.getFullYear();
+                if (yy < 10) yy = '0' + yy;
+              
+                return dd + '-' + mm + '-' + yy;
+            }
+        
+            homeworkItem.createDate = formatDate(date)
+        
+            homework.createHomework(homeworkItem, (result)=>{
+                if(result){
+                    if(result){
+                        res.json({
+                            success: true,
+                            data: result
+                        })
+                    }
+                }
+            })
+        }else{
+            res.json({
+                success: false,
+                msg: "Вы не вошли в аккаунт!"
+            })
         }
     })
+    
+
     
 }
 
