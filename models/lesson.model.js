@@ -24,3 +24,10 @@ module.exports.getAll = (callback)=>{
         console.log(err)
     })
 }
+
+module.exports.getById = (id, callback) =>{
+  Lesson.findOne({where: {id: id}})
+    .then(result=>{
+      callback(result)
+    })
+}
