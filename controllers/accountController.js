@@ -21,6 +21,8 @@ exports.login = (req, res) =>{
                     res
                     .json({
                         success: true,
+                        id: find.id,
+                        login: find.name,
                         msg:"Успешная авторизация",
                         jwt: token
                     })
@@ -71,6 +73,7 @@ exports.reg = (req, res) =>{
                         success: true,
                         msg: "Пользователь был зарегистрирован!",
                         data:{
+                            id: user.id,
                             name: user.name,
                             login: user.login,
                             jwt: token
