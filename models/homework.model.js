@@ -49,13 +49,31 @@ module.exports.getAll = (callback) =>{
         })
 };
 
+module.exports.getById = (id, callback) =>{
+  Homework.findOne({where: {id: id}})
+    .then(result=>{
+      callback(result)
+    })
+}
+
+module.exports.editById = (data, callback) =>{
+  Homework.update({
+    title: data.title,
+    description: data.description,
+  },
+  {
+    where:{id: data.id}
+  }).then(result=>{
+    callback(result)
+  })
+}
+
 module.exports.filterById = (id, callback) =>{
   Homework.findAll({where:{lesson: id}, raw: true })
     .then(result=>{
       callback(result)
     })
 }
-
 
 module.exports.createHomework = (item, callback) =>{
     Homework.create(item, {raw: true})
