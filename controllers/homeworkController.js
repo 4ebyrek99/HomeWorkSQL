@@ -115,7 +115,7 @@ exports.filter = (req, res) =>{
 
     lesson.getAll((lessons=>{
         user.getAll((users)=>{
-            homework.filterById(id, (homeworks)=>{
+            homework.filterByLesson(id, (homeworks)=>{
                 for(i = 1; i <= homeworks.length; i++){
                     lessonId = homeworks[i-1].lesson
                     userId = homeworks[i-1].author

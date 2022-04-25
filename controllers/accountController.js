@@ -117,7 +117,7 @@ exports.change = (req, res) =>{
 
 }
 
-exports.deleteUser = (req, res) =>{
+exports.delete = (req, res) =>{
 
     const login = req.body.login
 

@@ -68,14 +68,14 @@ module.exports.editById = (data, callback) =>{
   })
 }
 
-module.exports.filterById = (id, callback) =>{
+module.exports.filterByLesson = (id, callback) =>{
   Homework.findAll({where:{lesson: id}, raw: true })
     .then(result=>{
       callback(result)
     })
 }
 
-module.exports.createHomework = (item, callback) =>{
+module.exports.create = (item, callback) =>{
     Homework.create(item, {raw: true})
         .then(result=>{
             callback(result)
