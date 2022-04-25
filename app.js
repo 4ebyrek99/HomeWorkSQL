@@ -5,6 +5,9 @@ const cors = require('cors')
 
 require('dotenv').config()
 
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./output-api.json')
+
 const routerAccount = require('./routes/account');
 const routerHomework = require('./routes/homework');
 const routerLesson = require('./routes/lesson')
@@ -20,9 +23,11 @@ app.use(cors({
     "optionsSuccessStatus": 204
 }));
 
-app.use('/account', routerAccount);
-app.use('/homework', routerHomework);
-app.use('/lessons', routerLesson);
+app.use(routerAccount);
+app.use(routerHomework);
+app.use(routerLesson);
+
+app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 
 app.listen(3000, ()=>{
