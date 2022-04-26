@@ -36,6 +36,16 @@ module.exports.getById = (id, callback) =>{
     })
 }
 
+module.exports.delete = (id, callback) =>{
+  Lesson.destroy({where: {id: id}})
+    .then(result=>{
+      callback(result)
+    })
+    .catch(err=>{
+      callback(err)
+    })
+}
+
 module.exports.counter = (data) => {
   Lesson.update({
     count: data.count

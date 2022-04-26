@@ -9,6 +9,6 @@ routerLesson.get(baseUrl + '/', lesson_controller.view);
 
 routerLesson.post(baseUrl + '/create', jwtVerify, lesson_controller.create);
 
-routerLesson.delete(baseUrl + '/delete', jwtVerify, lesson_controller.delete);
+routerLesson.delete(baseUrl + '/delete/:id', jwtVerify, lesson_controller.delete);
 
 module.exports = routerLesson;
