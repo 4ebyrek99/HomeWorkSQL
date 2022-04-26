@@ -39,7 +39,6 @@ const Homework = db.sequelize.define("homeworks", {
 
 module.exports.getAll = (callback) =>{
 
-    //Готовый код
     Homework.findAll({raw:true})
         .then(homeworks=>{
           callback(homeworks)
@@ -48,7 +47,6 @@ module.exports.getAll = (callback) =>{
             console.log(err)
         })
 };
-
 module.exports.getById = (id, callback) =>{
   Homework.findOne({where: {id: id}})
     .then(result=>{
