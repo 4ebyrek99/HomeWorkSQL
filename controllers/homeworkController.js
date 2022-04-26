@@ -147,6 +147,18 @@ exports.delete = (req, res) =>{
 
     homework.delete(id, (result)=>{
         if(result !== 0){
+
+            homework.filterByLesson(homeworkItem.lesson, (homework)=>{
+                if(homework){
+                    const data = {
+                        id: homeworkItem.lesson,
+                        count: homework.length
+                    }
+                    console.log(data);
+                    lesson.counter(data)
+                }
+            })
+
             res.json({
                 success: true,
                 result: result,
