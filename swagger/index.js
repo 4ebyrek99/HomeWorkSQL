@@ -4,11 +4,11 @@ const doc = {
     info: {
         title: 'Homework server API',
         description: 'API сервера с ДЗ"',
-        host: 'localhost:3000',
+        host: 'homework.webdev.kz',
         schemes: ['https']
     },
-    host: "localhost:3000",
-    basePath: ""
+    host: "homework.webdev.kz",
+    schemes: ['https']
 }
 
 const outputFile = './output-api.json'

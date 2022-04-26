@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 
 module.exports = checkToken = (req, res, next) =>{
     const token = req.cookies.jwt
-    console.log(token);
 
     if(token !== undefined){
         jwt.verify(token, process.env.SECRET_KEY, (err, decoded) =>{

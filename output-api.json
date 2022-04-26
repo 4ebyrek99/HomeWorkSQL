@@ -3,16 +3,16 @@
   "info": {
     "title": "Homework server API",
     "description": "API сервера с ДЗ\"",
-    "host": "localhost:3000",
+    "host": "homework.webdev.kz",
     "schemes": [
-      "http"
+      "https"
     ],
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
-  "basePath": "",
+  "host": "homework.webdev.kz",
+  "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api/homework/": {
@@ -45,7 +45,7 @@
                 "expireDate": {
                   "example": "any"
                 },
-                "id": {
+                "author": {
                   "example": "any"
                 },
                 "lesson": {
@@ -142,14 +142,29 @@
       "post": {
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
-    "/api/lessons/delete": {
+    "/api/lessons/delete/{id}": {
       "delete": {
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/account/login": {
