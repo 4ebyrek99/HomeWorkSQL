@@ -27,7 +27,7 @@ app.use(routerAccount);
 app.use(routerHomework);
 app.use(routerLesson);
 
-app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 
 app.listen(3000, ()=>{
