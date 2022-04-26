@@ -36,7 +36,7 @@ exports.create = (req, res) =>{
         title: req.body.title,
         description: req.body.description,
         expireDate: req.body.expireDate,
-        author: req.body.id,
+        author: req.body.author,
         lesson: req.body.lesson
     }
 
@@ -57,19 +57,30 @@ exports.create = (req, res) =>{
 
     homeworkItem.createDate = formatDate(date)
 
-    homework.createHomework(homeworkItem, (result)=>{
+    homework.create(homeworkItem, (result)=>{
         if(result){
-            if(result){
-                res.json({
-                    success: true,
-                    data: result
-                })
-            }
+            homework.filterByLesson(homeworkItem.lesson, (homework)=>{
+                if(homework){
+                    const data = {
+                        id: homeworkItem.lesson,
+                        count: homework.length
+                    }
+                    console.log(data);
+                    lesson.counter(data)
+                }
+            })
+
+            res.json({
+                success: true,
+                data: result
+            })
+        }else{
+            res.json({
+                success: false,
+                msg: "Ошибка при создании ДЗ!"
+            })
         }
     })
-            
-        
-    
 }
 
 exports.get = (req, res) =>{

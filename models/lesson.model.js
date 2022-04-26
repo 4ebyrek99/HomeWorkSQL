@@ -10,6 +10,10 @@ const Lesson = db.sequelize.define("lesson", {
     name: {
         type: db.Sequelize.STRING,
         allowNull: false
+      },
+    count: {
+        type: db.Sequelize.INTEGER,
+        allowNull: false
       }
 },{
     timestamps: false
@@ -30,4 +34,14 @@ module.exports.getById = (id, callback) =>{
     .then(result=>{
       callback(result)
     })
+}
+
+module.exports.counter = (data) => {
+  Lesson.update({
+    count: data.count
+  },
+  {
+    where:{id: data.id}
+  })
+
 }
