@@ -104,7 +104,10 @@ exports.get = (req, res) =>{
 }
 
 exports.edit = (req, res) =>{
-    const data = req.body
+    const data = {
+        title: req.body.title,
+        description: req.body.description
+    }
     homework.editById(data, (result)=>{
         if(result > 0){
             res.json({
