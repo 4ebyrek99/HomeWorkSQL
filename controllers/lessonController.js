@@ -8,7 +8,24 @@ exports.view = (req, res) =>{
 }
 
 exports.create = (req, res) =>{
+    lessonItem = {
+        name: req.body.name,
+        count: 0
+    }
     
+    lesson.create(lessonItem, (result)=>{
+        if(result){
+            res.json({
+                success: true,
+                msg: "Предмет добавлен!"
+            })
+        }else{
+            res.json({
+                success: false,
+                msg: "Ошибка добавления!"
+            })
+        }
+    })
 }
 
 exports.delete = (req, res) =>{

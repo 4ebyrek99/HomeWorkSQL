@@ -36,6 +36,13 @@ module.exports.getById = (id, callback) =>{
     })
 }
 
+module.exports.create = (item, callback) =>{
+  Lesson.create(item, {raw: true})
+  .then(result=>{
+      callback(result)
+  })
+}
+
 module.exports.delete = (id, callback) =>{
   Lesson.destroy({where: {id: id}})
     .then(result=>{
