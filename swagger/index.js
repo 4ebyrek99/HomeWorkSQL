@@ -5,7 +5,7 @@ const doc = {
         title: 'Homework server API',
         description: 'API сервера с ДЗ"',
         host: 'localhost:3000',
-        schemes: ['http']
+        schemes: ['https']
     },
     host: "localhost:3000",
     basePath: ""
