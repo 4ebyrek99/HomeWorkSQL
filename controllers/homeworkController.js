@@ -105,6 +105,7 @@ exports.get = (req, res) =>{
 
 exports.edit = (req, res) =>{
     const data = {
+        id: req.body.id,
         title: req.body.title,
         description: req.body.description
     }

@@ -108,6 +108,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "id": {
+                  "example": "any"
+                },
                 "title": {
                   "example": "any"
                 },
