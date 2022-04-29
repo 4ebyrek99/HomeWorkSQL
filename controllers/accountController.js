@@ -22,7 +22,8 @@ exports.login = (req, res) =>{
                     .json({
                         success: true,
                         id: find.id,
-                        login: find.name,
+                        name: find.name,
+                        login: find.login,
                         msg:"Успешная авторизация",
                         jwt: token
                     })
