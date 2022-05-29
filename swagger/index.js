@@ -16,6 +16,7 @@ const endPoints = [
     './routes/homework.js',
     './routes/lesson.js',
     './routes/account.js',
+    './routes/schedule.js',
 ]
 
 swaggerGenerator(outputFile, endPoints, doc)
