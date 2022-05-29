@@ -11,4 +11,6 @@ routerLesson.post(baseUrl + '/create', jwtVerify, lesson_controller.create);
 
 routerLesson.delete(baseUrl + '/delete/:id', jwtVerify, lesson_controller.delete);
 
+routerLesson.put(baseUrl + '/edit', jwtVerify, lesson_controller.edit);
+
 module.exports = routerLesson;
