@@ -6,26 +6,36 @@ const user = require('../models/user.model')
 exports.view = (req, res) =>{
 
     //Готовый код
-    let lessonId = null
-    let userId = null
 
-    lesson.getAll((lessons=>{
+    lesson.getAll(lessons=>{
         user.getAll((users)=>{
             homework.getAll((homeworks)=>{
                 for(i = 1; i <= homeworks.length; i++){
-                    lessonId = homeworks[i-1].lesson
-                    userId = homeworks[i-1].author
-                    
-                    homeworks[i-1].lesson = lessons[lessonId-1].name
-                    homeworks[i-1].author = users[userId-1].name
+                    for(j = 1; j <= lessons.length; j++){
+                        if(homeworks[i-1].lesson === lessons[j-1].id){
+                            homeworks[i-1].lesson = lessons[j-1].name
+                        }
+                    }
+                    for(j = 1; j <= users.length; j++){
+                        if(homeworks[i-1].author === users[j-1].id){
+                            homeworks[i-1].author = users[j-1].name
+                        }
+                    }
                 }
-            
-                res.json({
-                    homeworks: homeworks
-                })
+                if(homeworks){
+                    res.json({
+                        success: true,
+                        homeworks: homeworks
+                    })
+                }else{
+                    res.json({
+                        success: false,
+                        msg: "ДЗ не найдено!"
+                    })
+                }
             })
         })
-    }))
+    })
     
     
 }
@@ -128,29 +138,43 @@ exports.edit = (req, res) =>{
 exports.filter = (req, res) =>{
     const id = req.params.id
 
-    lesson.getAll((lessons=>{
+    lesson.getAll(lessons=>{
         user.getAll((users)=>{
             homework.filterByLesson(id, (homeworks)=>{
                 for(i = 1; i <= homeworks.length; i++){
-                    lessonId = homeworks[i-1].lesson
-                    userId = homeworks[i-1].author
-                    
-                    homeworks[i-1].lesson = lessons[lessonId-1].name
-                    homeworks[i-1].author = users[userId-1].name
+                    for(j = 1; j <= lessons.length; j++){
+                        if(homeworks[i-1].lesson === lessons[j-1].id){
+                            homeworks[i-1].lesson = lessons[j-1].name
+                        }
+                    }
+                    for(j = 1; j <= users.length; j++){
+                        if(homeworks[i-1].author === users[j-1].id){
+                            homeworks[i-1].author = users[j-1].name
+                        }
+                    }
                 }
-                res.json({
-                    homeworks: homeworks
-                })
+                if(homeworks){
+                    res.json({
+                        success: true,
+                        homeworks: homeworks
+                    })
+                }else{
+                    res.json({
+                        success: false,
+                        msg: "ДЗ не найдено!"
+                    })
+                }
+
             })
         })
-    }))
+    })
 }
 
 exports.delete = (req, res) =>{
     const id = req.params.id
 
     homework.delete(id, (result)=>{
-        if(result !== 0){
+        if(result > 0){
 
             homework.filterByLesson(homeworkItem.lesson, (homework)=>{
                 if(homework){
@@ -166,14 +190,14 @@ exports.delete = (req, res) =>{
             res.json({
                 success: true,
                 result: result,
-                msg: "Домашнее задание удалено"
+                msg: "Домашнее задание удалено!"
             })
         }
         else{
             res.json({
                 success: false,
                 result: result,
-                msg: "Домашнего задания с таким id не найдено"
+                msg: "Домашнего задания с таким id не найдено!"
             })
         }
     })
