@@ -364,7 +364,7 @@
                 "time_end": {
                   "example": "any"
                 },
-                "class_room": {
+                "classroom": {
                   "example": "any"
                 },
                 "type_lesson": {
@@ -433,7 +433,7 @@
                 "time_end": {
                   "example": "any"
                 },
-                "class_room": {
+                "classroom": {
                   "example": "any"
                 },
                 "type_lesson": {
