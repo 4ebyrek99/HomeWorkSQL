@@ -59,6 +59,13 @@ module.exports.getAll = (callback) =>{
       })
 };
 
+module.exports.create = (item, callback) =>{
+  Schedule.create(item, {raw: true})
+      .then(result=>{
+          callback(result)
+      })
+}
+
 
 module.exports.getById = (id, callback) =>{
   Schedule.findOne({where: {id: id}})
@@ -69,10 +76,11 @@ module.exports.getById = (id, callback) =>{
 
 module.exports.editById = (data, callback) =>{
   Schedule.update({
+    id: data.id,
     lesson_name: data.lesson_name,
     time_start: data.time_start,
     time_end: data.time_end,
-    class_room: data.class_room,
+    classroom: data.class_room,
     type_lesson: data.type_lesson,
     zoom_id: data.zoom_id,
     zoom_pass: data.zoom_pass,

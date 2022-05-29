@@ -34,7 +34,7 @@ exports.create = (req, res) =>{
         lesson_name: req.body.lesson,
         time_start: req.body.time_start,
         time_end: req.body.time_end,
-        class_room: req.body.class_room,
+        classroom: req.body.classroom,
         type_lesson: req.body.type_lesson,
         zoom_id: req.body.zoom_id,
         zoom_pass: req.body.zoom_pass,
@@ -43,7 +43,7 @@ exports.create = (req, res) =>{
     }
 
     schedule.create(scheduleItem, (result)=>{
-        if(result > 0){
+        if(result){
             res.json({
                 success: true,
                 data: result
@@ -84,7 +84,7 @@ exports.edit = (req, res) =>{
         lesson_name: req.body.lesson,
         time_start: req.body.time_start,
         time_end: req.body.time_end,
-        class_room: req.body.class_room,
+        class_room: req.body.classroom,
         type_lesson: req.body.type_lesson,
         zoom_id: req.body.zoom_id,
         zoom_pass: req.body.zoom_pass,
