@@ -199,6 +199,33 @@
         }
       }
     },
+    "/api/lessons/edit": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/account/login": {
       "post": {
         "description": "",
@@ -298,6 +325,152 @@
                 }
               }
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/schedule/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/schedule/create": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lesson": {
+                  "example": "any"
+                },
+                "time_start": {
+                  "example": "any"
+                },
+                "time_end": {
+                  "example": "any"
+                },
+                "class_room": {
+                  "example": "any"
+                },
+                "type_lesson": {
+                  "example": "any"
+                },
+                "zoom_id": {
+                  "example": "any"
+                },
+                "zoom_pass": {
+                  "example": "any"
+                },
+                "teacher": {
+                  "example": "any"
+                },
+                "day": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/schedule/get/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/schedule/edit": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "any"
+                },
+                "lesson": {
+                  "example": "any"
+                },
+                "time_start": {
+                  "example": "any"
+                },
+                "time_end": {
+                  "example": "any"
+                },
+                "class_room": {
+                  "example": "any"
+                },
+                "type_lesson": {
+                  "example": "any"
+                },
+                "zoom_id": {
+                  "example": "any"
+                },
+                "zoom_pass": {
+                  "example": "any"
+                },
+                "teacher": {
+                  "example": "any"
+                },
+                "day": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/schedule/delete/{id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
