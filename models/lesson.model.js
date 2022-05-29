@@ -60,5 +60,15 @@ module.exports.counter = (data) => {
   {
     where:{id: data.id}
   })
+}
 
+module.exports.edit = (data, callback) =>{
+  Lesson.update({
+    name: data.name
+  },
+  {
+    where:{id: data.id}
+  }).then(result=>{
+    callback(result)
+  })
 }
