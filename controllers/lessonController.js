@@ -48,3 +48,25 @@ exports.delete = (req, res) =>{
         }
     })
 }
+
+exports.edit = (req, res) =>{
+    const data = {
+        id: req.body.id,
+        name: req.body.name,
+    }
+
+    lesson.edit(data, (result)=>{
+        if(result > 0){
+            res.json({
+                success: true,
+                msg: "Предмет изменен!"
+            })
+        }
+        else{
+            res.json({
+                success: false,
+                msg: "Предмет с таким id не найден!"
+            })
+        }
+    })
+}
