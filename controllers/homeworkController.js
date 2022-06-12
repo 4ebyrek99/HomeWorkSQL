@@ -173,30 +173,31 @@ exports.filter = (req, res) =>{
 exports.delete = (req, res) =>{
     const id = req.params.id
 
-    homework.delete(id, (result)=>{
-        if(result > 0){
 
-            homework.filterByLesson(homeworkItem.lesson, (homework)=>{
-                if(homework){
-                    const data = {
-                        id: homeworkItem.lesson,
-                        count: homework.length
-                    }
-                    console.log(data);
-                    lesson.counter(data)
-                }
-            })
+
+    homework.delete(id, (result)=>{
+        console.log(result);
+        if(result){
+            //переделать счетчик
+            // homework.filterByLesson(homeworkItem.lesson, (homework)=>{
+            //     if(homework){
+            //         const data = {
+            //             id: homeworkItem.lesson,
+            //             count: homework.length
+            //         }
+            //         console.log(data);
+            //         lesson.counter(data)
+            //     }
+            // })
 
             res.json({
                 success: true,
-                result: result,
                 msg: "Домашнее задание удалено!"
             })
         }
         else{
             res.json({
                 success: false,
-                result: result,
                 msg: "Домашнего задания с таким id не найдено!"
             })
         }
