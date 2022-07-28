@@ -125,8 +125,7 @@ exports.edit = (req, res) =>{
                 success: true,
                 msg: "ДЗ было изменено!"
             })
-        }
-        else{
+        }else{
             res.json({
                 success: false,
                 msg: "ДЗ не было изменено!"
@@ -194,8 +193,7 @@ exports.delete = (req, res) =>{
                 success: true,
                 msg: "Домашнее задание удалено!"
             })
-        }
-        else{
+        }else{
             res.json({
                 success: false,
                 msg: "Домашнего задания с таким id не найдено!"

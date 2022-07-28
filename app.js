@@ -12,6 +12,7 @@ const routerAccount = require('./routes/account');
 const routerHomework = require('./routes/homework');
 const routerLesson = require('./routes/lesson')
 const routerSchedule = require('./routes/schedule')
+const routerExams = require('./routes/exams')
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(routerAccount);
 app.use(routerHomework);
 app.use(routerLesson);
 app.use(routerSchedule);
+app.use(routerExams);
 
 app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 

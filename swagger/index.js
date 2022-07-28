@@ -13,10 +13,11 @@ const doc = {
 
 const outputFile = './output-api.json'
 const endPoints = [
-    './routes/homework.js',
-    './routes/lesson.js',
-    './routes/account.js',
-    './routes/schedule.js',
+    '../routes/homework.js',
+    '../routes/lesson.js',
+    '../routes/account.js',
+    '../routes/schedule.js',
+    '../routes/exams.js',
 ]
 
 swaggerGenerator(outputFile, endPoints, doc)
