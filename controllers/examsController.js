@@ -8,8 +8,8 @@ exports.view = (req, res) =>{
             exams.getAll((examss)=>{
                 for(i = 1; i <= examss.length; i++){
                     for(j = 1; j <= lessons.length; j++){
-                        if(examss[i-1].lesson === lessons[j-1].id){
-                            examss[i-1].lesson = lessons[j-1].name
+                        if(examss[i-1].lesson_name === lessons[j-1].id){
+                            examss[i-1].lesson_name = lessons[j-1].name
                         }
                     }
                     for(j = 1; j <= users.length; j++){
