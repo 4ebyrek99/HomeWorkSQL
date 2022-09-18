@@ -45,9 +45,6 @@
                 "expireDate": {
                   "example": "any"
                 },
-                "author": {
-                  "example": "any"
-                },
                 "lesson": {
                   "example": "any"
                 }
@@ -511,9 +508,6 @@
                   "example": "any"
                 },
                 "teacher": {
-                  "example": "any"
-                },
-                "author": {
                   "example": "any"
                 }
               }
