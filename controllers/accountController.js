@@ -11,7 +11,7 @@ exports.login = (req, res) =>{
             dataToken = {
                 id: find.id,
                 login: find.login,
-                name:find.name,
+                name: find.name,
             }
             User.comparePass(password, find.password, (isAuth)=>{
                 if(isAuth){

@@ -1,11 +1,12 @@
 const homework = require('../models/homework.model')
 const lesson = require('../models/lesson.model')
 const user = require('../models/user.model')
-
+const jwt = require('jsonwebtoken');
 
 exports.view = (req, res) =>{
 
     //Готовый код
+    
 
     lesson.getAll(lessons=>{
         user.getAll((users)=>{
@@ -42,11 +43,13 @@ exports.view = (req, res) =>{
 
 exports.create = (req, res) =>{
 
+    token = jwt.decode(req.cookies.jwt)
+
     homeworkItem = {
         title: req.body.title,
         description: req.body.description,
         expireDate: req.body.expireDate,
-        author: req.body.author,
+        author: token.id,
         lesson: req.body.lesson
     }
 

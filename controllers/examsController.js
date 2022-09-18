@@ -1,6 +1,7 @@
 const lesson = require('../models/lesson.model')
 const user = require('../models/user.model')
 const exams = require('../models/exams.model')
+const jwt = require('jsonwebtoken');
 
 exports.view = (req, res) =>{
     lesson.getAll(lessons=>{
@@ -35,12 +36,15 @@ exports.view = (req, res) =>{
 }
 
 exports.create = (req, res) =>{
+
+    token = jwt.decode(req.cookies.jwt)
+
     examsItem = {
         lesson_name: req.body.lesson_name,
         date: req.body.date,
         time_start: req.body.time_start,
         teacher: req.body.teacher,
-        author: req.body.author,
+        author: token.id,
     }
 
     exams.create(examsItem, (result)=>{
